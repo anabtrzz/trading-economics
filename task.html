@@ -1,0 +1,38 @@
+<body>
+    <div class="container">
+        <table class="table table-stripped">
+            <thead>
+                <tr>
+                    <th>
+                        Infos
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody id="data"></tbody>
+        </table>
+    </div>
+
+
+    <script>
+        
+        fetch("https://brains.tradingeconomics.com/v2/search/wb,fred,comtrade?q=nigeria&pp=50&p=0&_=1557934352427&stance=2").then(
+            res=>{
+                res.json().then(
+                    data=>{
+                        console.log(data);
+                        if(data.length > 0){
+                            var temp = "";
+
+                            data.forEach((u)=>{
+                                temp += "<tr>";
+                                temp += "<td>"+u.id+"</td></tr>";
+                            })
+                            document.getElementById('data').innerHTML = temp;
+                        }
+                    }
+                )
+            }
+        )
+    </script>
+</body>
